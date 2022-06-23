@@ -35,4 +35,8 @@ export class DataService {
   getTree(): TreeNode {
     return this.tree;
   }
+
+  save(): void {
+    console.log(JSON.stringify(this.tree, null, 2));
+  }
 }

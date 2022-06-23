@@ -16,4 +16,8 @@ export class TreeComponent implements OnInit {
     this.tree = this.dataService.getTree();
   }
 
+  clickSave(): void {
+    this.dataService.save();
+  }
+
 }
