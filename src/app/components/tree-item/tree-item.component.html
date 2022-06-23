@@ -1,10 +1,14 @@
 <div class="tree-item">
-  <p (click)="toggleNode()">{{ isFolder ? "📂" : "📄" }} {{ nodeData?.label }}</p>
-
+  <p [class.folder]="isFolder" (click)="toggleNode()">
+    <span>{{ isFolder ? "📂" : "📄" }} {{ nodeData?.label }}</span>
+    <a (click)="clickDelete($event)">❎</a>
+  </p>
+  <!-- <p [style.cursor]="isFolder && 'pointer'" (click)="toggleNode()">{{ isFolder ? "📂" : "📄" }} {{ nodeData?.label }}</p> -->
   <ng-container *ngIf="!closed">
     <app-tree-item
       *ngFor="let item of nodeData?.items"
       [nodeData]="item"
+      (deleteMe)="deleteItem($event)"
     ></app-tree-item>
   </ng-container>
 

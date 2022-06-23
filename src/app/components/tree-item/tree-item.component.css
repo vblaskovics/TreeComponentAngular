@@ -1,3 +1,15 @@
 .tree-item {
   margin-left: 15px;
 }
+
+.folder {
+  cursor: pointer;
+}
+
+p:not(:hover) a {
+  display: none;
+}
+
+a {
+  cursor: pointer;
+}
