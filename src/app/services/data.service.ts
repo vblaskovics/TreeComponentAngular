@@ -12,21 +12,21 @@ export class DataService {
       label: 'Mappa1',
       items: [
         {
-          label: 'Mappa2',
+          label: 'Fájl1',
         },
         {
           label: 'Mappa3',
           items: [
             {
-              label: 'Mappa5',
+              label: 'Fájl2',
             },
             {
-              label: 'Mappa6',
+              label: 'Fájl3',
             },
           ],
         },
         {
-          label: 'Mappa4',
+          label: 'Fájl4',
         },
       ],
     };

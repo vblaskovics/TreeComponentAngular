@@ -15,6 +15,10 @@ export class TreeItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  get isFolder():boolean {
+    return Array.isArray(this.nodeData?.items)
+  }
+
   toggleNode(): void {
     console.log(this.nodeData?.label, 'clicked');
     this.closed = !this.closed;
