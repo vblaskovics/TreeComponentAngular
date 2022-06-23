@@ -41,7 +41,6 @@ export class TreeItemComponent implements OnInit {
 
   clickRename(event: Event): void {
     event.stopPropagation();
-    let renameBtn: HTMLInputElement = event.target as HTMLInputElement;
     this.editmode = true;
 
     // Késleltetjük az input mező elérését, mert ebben a pillanatban még nincs benne a DOM-ban az ngIf miatt
