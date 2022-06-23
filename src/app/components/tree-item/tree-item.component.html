@@ -1,0 +1,8 @@
+<div class="tree-item">
+  <p (click)="toggleNode()">{{ nodeData?.label }}</p>
+
+  <app-tree-item
+    *ngFor="let item of nodeData?.items"
+    [nodeData]="item"
+  ></app-tree-item>
+</div>
