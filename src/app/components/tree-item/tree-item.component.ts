@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { TreeNode } from 'src/app/interfaces/tree-node';
 
 @Component({
@@ -9,7 +17,9 @@ import { TreeNode } from 'src/app/interfaces/tree-node';
 export class TreeItemComponent implements OnInit {
   @Input() nodeData?: TreeNode;
   @Output() deleteMe: EventEmitter<TreeNode> = new EventEmitter<TreeNode>();
+  @ViewChild('RenameInput') inputEl!: ElementRef;
   closed: boolean = false;
+  editmode: boolean = false;
 
   constructor() {}
 
@@ -27,6 +37,22 @@ export class TreeItemComponent implements OnInit {
   clickDelete(event: Event): void {
     event.stopPropagation();
     this.deleteMe.emit(this.nodeData);
+  }
+
+  clickRename(event: Event): void {
+    event.stopPropagation();
+    let renameBtn: HTMLInputElement = event.target as HTMLInputElement;
+    this.editmode = true;
+
+    // Késleltetjük az input mező elérését, mert ebben a pillanatban még nincs benne a DOM-ban az ngIf miatt
+    setTimeout(() => {
+      this.inputEl.nativeElement.focus();
+    });
+  }
+
+  renameLabel() {
+    this.editmode = false;
+    this.nodeData!.label = this.inputEl.nativeElement.value;
   }
 
   deleteItem(nodeData: TreeNode): void {

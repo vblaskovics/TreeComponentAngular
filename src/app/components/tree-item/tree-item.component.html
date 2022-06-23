@@ -1,7 +1,17 @@
 <div class="tree-item">
   <p [class.folder]="isFolder" (click)="toggleNode()">
-    <span>{{ isFolder ? "📂" : "📄" }} {{ nodeData?.label }}</span>
+    <input
+      #RenameInput
+      *ngIf="editmode"
+      [value]="nodeData?.label"
+      (focusout)="renameLabel()"
+      (keyup.enter)="renameLabel()"
+    />
+    <span *ngIf="!editmode"
+      >{{ isFolder ? "📂" : "📄" }} {{ nodeData?.label }}</span
+    >
     <a (click)="clickDelete($event)">❎</a>
+    <a (click)="clickRename($event)">✏️</a>
   </p>
   <!-- <p [style.cursor]="isFolder && 'pointer'" (click)="toggleNode()">{{ isFolder ? "📂" : "📄" }} {{ nodeData?.label }}</p> -->
   <ng-container *ngIf="!closed">
@@ -11,5 +21,4 @@
       (deleteMe)="deleteItem($event)"
     ></app-tree-item>
   </ng-container>
-
 </div>
